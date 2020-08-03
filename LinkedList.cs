@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenericCollection
 {
-    class LinkedList<T> : ICollection<T>
+    class LinkedList<T>
     {
 
         public Node<T> Head { get; private set; }
@@ -56,10 +56,12 @@ namespace GenericCollection
             Tail = node;
             Count += 1;
         }
-
+    
         public Node<T> Find(T data)
         {
             Node<T> current = Head;
+
+           
             while(current != null)
             {
                 if (current.Data.Equals(data))
@@ -72,18 +74,12 @@ namespace GenericCollection
         public bool isEmpty() => Count == 0;
         
 
-        public bool IsReadOnly => throw new NotImplementedException();
 
-        public void Add(T item)
+        public int Add(T data)
         {
-            throw new NotImplementedException();
+            AddHead(data);
+            return Count;
         }
-
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Contains(T data) => Find(data) != null;
 
         public int Size() => Count;
@@ -93,19 +89,140 @@ namespace GenericCollection
             throw new NotImplementedException();
         }
 
-        public IEnumerator<T> GetEnumerator()
+
+        public void Insert(T data, int index)
         {
-            throw new NotImplementedException();
+            Node<T> node = new Node<T>(data);
+            Node<T> tempNode = Head;
+            if (index >= Count)
+                throw new ArgumentException($"index is out of range.");
+            int currentIndex = 0;
+            while(tempNode != null)
+            {
+                if(currentIndex == index)
+                {
+                    break;
+                }
+                currentIndex++;
+                tempNode = tempNode.Next;
+            }
+            if(tempNode == Tail)
+            {
+                AddTail(data);
+            }
+            else
+            {
+
+            }
+            Node<T> next = tempNode.Next;
+            Node<T> previous = tempNode.Previous;
+            if(previous == null)
+            {
+                Head = node;
+                Head.Next = tempNode;
+                previous = Head;
+            }
+            //else if(next == null)
+            //{
+            //    Tail = node;
+            //    tempNode.Next = Tail;
+            //    Tail.Previous = tempNode;
+            //}
+            else
+            {
+                previous.Next = node;
+                node.Next = tempNode;
+                tempNode.Previous = node;
+                node.Previous = previous;
+            }
+            Count++;
+        }
+        
+        public void RemoveTail()
+        {
+            if(Count != 0)
+            {
+                Tail = Tail.Previous;
+                Count--;
+                if(Count == 0)
+                {
+                    Head = null;
+                }
+                else
+                {
+                    Tail.Next = null;
+                }
+            }
         }
 
-        public bool Remove(T item)
+        public void RemoveHead()
         {
-            throw new NotImplementedException();
+            if(Count != 0)
+            {
+                Head = Head.Next;
+                Count--;
+                if(Count == 0)
+                {
+                    Tail = null;
+                }
+                else
+                {
+                    Head.Previous = null;
+                }
+            }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        public bool Remove(T data)
         {
-            throw new NotImplementedException();
+            Node<T> node = Find(data);
+            if (node == null)
+                return false;
+
+            Node<T> next = node.Next;
+            Node<T> previous = node.Previous;
+            if(previous == null)
+            {
+                Head = next;
+                if(Head != null)
+                {
+                    Head.Previous = null;
+                }
+            }
+            else
+            {
+                previous.Next = next;
+            }
+
+            if(next == null)
+            {
+                Tail = previous;
+                if(Tail != null)
+                {
+                    Tail.Next = null;
+                }
+            }
+            else
+            {
+                next.Previous = previous; 
+            }
+            Count--;
+            return true;
         }
+
+        public int Index(T data)
+        {
+            int index = -1;
+
+            Node<T> current = Head;
+            while (current != null)
+            {
+                index += 1;
+                if (current.Data.Equals(data))
+                    return index;
+                current = current.Next;
+            }
+            return -1;
+        }
+
     }
 }
