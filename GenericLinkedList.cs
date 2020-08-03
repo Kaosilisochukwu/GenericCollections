@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenericCollection
 {
-    class LinkedList<T>
+    class GenericLinkedList<T>
     {
 
         public Node<T> Head { get; private set; }
@@ -73,7 +73,10 @@ namespace GenericCollection
 
         public bool isEmpty() => Count == 0;
         
-
+        public T Search(T data)
+        {
+            return Find(data).Data;
+        }
 
         public int Add(T data)
         {
@@ -84,10 +87,6 @@ namespace GenericCollection
 
         public int Size() => Count;
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
 
 
         public void Insert(T data, int index)

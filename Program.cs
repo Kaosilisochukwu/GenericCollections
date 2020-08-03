@@ -6,7 +6,7 @@ namespace GenericCollection
     {
         static void Main(string[] args)
         {
-            LinkedList<int> ints = new LinkedList<int>();
+            GenericLinkedList<int> ints = new GenericLinkedList<int>();
             Console.WriteLine(ints.Count);
             ints.AddHead(5);
             ints.AddHead(3);
@@ -19,12 +19,17 @@ namespace GenericCollection
             Console.WriteLine("------------------------------------------");
             ints.Insert(40, 3);
             Console.WriteLine(ints.Index(5));
+            Console.WriteLine(ints.Index(3));
             Console.WriteLine(ints.Index(7));
             Console.WriteLine(ints.Index(10));
             Console.WriteLine(ints.Index(40));
+            Console.WriteLine(ints.Add(5));
             Console.WriteLine(ints.Count);
             ints.RemoveTail();
             Console.WriteLine(ints.Count);
+            GenericStack<string> strings = new GenericStack<string>();
+            strings.Push("corn");
+            Console.WriteLine(strings.isEmpty());
         }
     }
 }
