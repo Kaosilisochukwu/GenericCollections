@@ -6,6 +6,7 @@ namespace GenericCollection
     {
         static void Main(string[] args)
         {
+            GenericController.Run();
             GenericLinkedList<int> ints = new GenericLinkedList<int>();
             Console.WriteLine(ints.Count);
             ints.AddHead(5);
@@ -31,6 +32,7 @@ namespace GenericCollection
             GenericStack<string> strings = new GenericStack<string>();
             strings.Push("corn");
             strings.Push("Yam");
+            strings.Pop();
             Console.WriteLine(strings.Peek());
             Console.WriteLine(strings.isEmpty());
             strings.Print();
@@ -39,7 +41,7 @@ namespace GenericCollection
             Console.WriteLine(stringer.IsEmpty());
             stringer.Enqueue("Deola");
             stringer.Enqueue("Precious");
-            //Console.WriteLine(strings.Peek());
+            Console.WriteLine(strings.Peek());
             Console.WriteLine(stringer.IsEmpty());
             stringer.Print();
         }
