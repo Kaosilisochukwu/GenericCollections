@@ -9,11 +9,15 @@ namespace GenericCollection
         GenericLinkedList<T> stackStore = new GenericLinkedList<T>();
         public bool isEmpty() => stackStore.isEmpty();
 
-        public void Push(T data) => stackStore.AddTail(data);
+        public void Push(T data) => stackStore.AddHead(data);
 
         public void Pop() => stackStore.RemoveTail();
 
-        public T Peek() => 
+        public T Peek() => stackStore.Head.Data;
+
+        public int Size() => stackStore.Count;
+
+        public void Print() => stackStore.Print();
 
 
     }

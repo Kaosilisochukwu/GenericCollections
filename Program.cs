@@ -26,10 +26,22 @@ namespace GenericCollection
             Console.WriteLine(ints.Add(5));
             Console.WriteLine(ints.Count);
             ints.RemoveTail();
+            ints.Print();
             Console.WriteLine(ints.Count);
             GenericStack<string> strings = new GenericStack<string>();
             strings.Push("corn");
+            strings.Push("Yam");
+            Console.WriteLine(strings.Peek());
             Console.WriteLine(strings.isEmpty());
+            strings.Print();
+            Console.WriteLine("---------------------------------------------");
+            GenericQueue<string> stringer = new GenericQueue<string>();
+            Console.WriteLine(stringer.IsEmpty());
+            stringer.Enqueue("Deola");
+            stringer.Enqueue("Precious");
+            //Console.WriteLine(strings.Peek());
+            Console.WriteLine(stringer.IsEmpty());
+            stringer.Print();
         }
     }
 }

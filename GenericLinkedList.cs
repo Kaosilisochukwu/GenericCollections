@@ -223,5 +223,15 @@ namespace GenericCollection
             return -1;
         }
 
+        public void Print()
+        {
+            Node<T> current = Head;
+            while (current != null)
+            {
+                Console.WriteLine(current.Data);
+                current = current.Next;
+            }
+        }
+
     }
 }
