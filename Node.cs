@@ -4,6 +4,7 @@ using System.Text;
 
 namespace GenericCollection
 {
+    //COMPOSITION OF THE NODE CLASS
     class Node<T>
     {
         public Node(T data)
