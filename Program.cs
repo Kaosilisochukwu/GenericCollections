@@ -6,15 +6,14 @@ namespace GenericCollection
     {
         static void Main(string[] args)
         {
-            //GenericController.Run();
             GenericLinkedList<int> ints = new GenericLinkedList<int>();
             Console.WriteLine(ints.Count);
             Console.WriteLine(ints.isEmpty());
             ints.isEmpty();
-            ints.AddHead(5);
-            ints.AddHead(3);
-            ints.AddHead(6);
-            ints.AddHead(9);
+            ints.Add(5);
+            ints.Add(3);
+            ints.Add(6);
+            ints.Add(9);
             Console.WriteLine(ints.isEmpty());
             ints.Remove(3);
             ints.Insert(7, 0);

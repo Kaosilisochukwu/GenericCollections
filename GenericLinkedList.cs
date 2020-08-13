@@ -21,7 +21,7 @@ namespace GenericCollection
         }
         
         //A METHOD TO ADD A NODE TO THE BEGINNING OF THE LIST
-        public void AddHead(Node<T> node)
+        private void AddHead(Node<T> node)
         {
             Node<T> temp = Head;
 
@@ -151,10 +151,11 @@ namespace GenericCollection
         }
 
         //METHOD TO REMOVE THE LAST ITEM IN THE LIST
-        public void RemoveTail()
+        public T RemoveTail()
         {
-            if(Count != 0)
+            if(Count > 0)
             {
+                Node<T> temp = Tail;
                 Tail = Tail.Previous;
                 Count--;
                 if(Count == 0)
@@ -165,14 +166,17 @@ namespace GenericCollection
                 {
                     Tail.Next = null;
                 }
+                return temp.Data;
             }
+            throw new IndexOutOfRangeException(); 
         }
 
         //REMOVES THE FIRST NODE IN THE LIST
-        public void RemoveHead()
+        public Node<T> RemoveHead()
         {
             if(Count != 0)
             {
+                Node<T> temp = Head;
                 Head = Head.Next;
                 Count--;
                 if(Count == 0)
@@ -183,7 +187,9 @@ namespace GenericCollection
                 {
                     Head.Previous = null;
                 }
+                return temp;
             }
+            throw new IndexOutOfRangeException();
         }
 
         //LINKED-LIST REMOVE METHOD THAT REMOVES THE FIRST OCCURANCE OF A NODE IN THE LIST
